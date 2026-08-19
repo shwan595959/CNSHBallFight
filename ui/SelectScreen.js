@@ -15,41 +15,8 @@ export class SelectScreen {
 
   render() {
     this.container.innerHTML = `
-      <div id="select-bg"></div>
+   <div id="select-bg"></div>
       <div id="select-wrap">
-
-        <!-- 공지사항 배너 -->
-        <div id="notice-banner">
-          <div id="notice-left">
-            <div id="notice-badge">📢</div>
-            <div id="notice-texts">
-              <div id="notice-title">UPDATE SEASON 1</div>
-              <div id="notice-subtitle">UGNAMU CNSH 1기 멤버</div>
-              <div id="notice-content">게임 출시</div>
-            </div>
-          </div>
-          <button id="notice-credit-btn">🎬 크레딧</button>
-        </div>
-
-        <!-- 크레딧 모달 -->
-        <div id="credit-modal" class="hidden">
-          <div id="credit-box">
-            <div id="credit-title">🎬 크레딧</div>
-            <div class="credit-section">
-              <div class="credit-section-label">개발자</div>
-              <div class="credit-names">김수환</div>
-            </div>
-            <div class="credit-section">
-              <div class="credit-section-label">Special Thanks</div>
-              <div class="credit-names">
-                고선호<br>
-                김정우B
-              </div>
-            </div>
-            <button id="credit-close-btn">✕ 닫기</button>
-          </div>
-        </div>
-
 
         <!-- 헤더 -->
         <div id="select-header">
@@ -60,6 +27,28 @@ export class SelectScreen {
           <div id="select-counter-wrap">
             <div id="select-counter">0</div>
             <div id="select-counter-label">출전</div>
+          </div>
+        </div>
+
+        <!-- 공지사항 배너 -->
+        <div id="notice-banner">
+          <div id="notice-tabs">
+            <button class="notice-tab active" data-tab="update">📢 공지사항</button>
+            <button class="notice-tab" data-tab="upcoming">🔜 Upcoming</button>
+          </div>
+          <div id="notice-panels">
+            <div class="notice-panel active" data-panel="update">
+              <div id="notice-title">SEASON 1</div>
+              <div id="notice-subtitle">어그나무 CNSH 33 1기 멤버</div>
+              <div id="notice-content">게임이 출시</div>
+            </div>
+            <div class="notice-panel hidden" data-panel="upcoming">
+              <ul id="notice-upcoming-list">
+                <li>1-3반</li>
+                <li>힐베르트</li>
+                <li>Coming Soon</li>
+              </ul>
+            </div>
           </div>
         </div>
 
@@ -95,29 +84,45 @@ export class SelectScreen {
 
         </div>
 
-       <!-- 하단 -->
-<div id="select-footer">
-  <button id="select-all-btn">✦ 전체 선택</button>
-  <button id="clear-btn">✦ 전체 해제</button>
-
-  <!-- 전장 크기 선택 추가 -->
+        <!-- 하단 -->
+        <div id="select-footer">
+  <div id="footer-left">
+    <button id="select-all-btn">✦ 전체 선택</button>
+    <button id="clear-btn">✦ 전체 해제</button>
+  </div>
   <div id="battlefield-select">
-    <div id="battlefield-label">🗺️ 전장 크기</div>
+    <div id="battlefield-label">전장 크기</div>
     <div id="battlefield-btns">
-      <button class="bf-btn" data-w="700" data-h="500">🏟️ 소형<span>700 × 500</span></button>
-      <button class="bf-btn selected" data-w="1000" data-h="700">🏟️ 중형<span>1000 × 700</span></button>
-      <button class="bf-btn" data-w="1400" data-h="900">🏟️ 대형<span>1400 × 900</span></button>
-      <button class="bf-btn" data-w="2100" data-h="1400">🏟️ 초대형<span>2100 × 1400</span></button>
+      <button class="bf-btn" data-w="700" data-h="500">소형<span>700 × 500</span></button>
+      <button class="bf-btn selected" data-w="1000" data-h="700">중형<span>1000 × 700</span></button>
+      <button class="bf-btn" data-w="1400" data-h="900">대형<span>1400 × 900</span></button>
+      <button class="bf-btn" data-w="2100" data-h="1400">특형<span>2100 × 1400</span></button>
     </div>
   </div>
-
-  <button id="battle-btn" disabled>
-    <span id="battle-btn-text">최소 2개를 선택하세요</span>
-  </button>
+  <div id="footer-right">
+    <button id="battle-btn" disabled>
+      <span id="battle-btn-text">최소 2개를 선택하세요</span>
+    </button>
+  </div>
 </div>
+        <!-- 크레딧 -->
+        <div id="credit-footer">
+          <div id="credit-inner">
+            <div class="credit-group">
+              <div class="credit-label">Made by</div>
+              <div class="credit-name">김수환</div>
+            </div>
+            <div id="credit-divider"></div>
+            <div class="credit-group">
+              <div class="credit-label">Special Thanks</div>
+              <div class="credit-name">고선호 · 김정우B</div>
+            </div>
+          </div>
+        </div>
 
       </div>
-    `;
+    </div>`;
+
 
     // 공 버튼 클릭
     document.querySelectorAll('.ball-btn').forEach(btn => {
@@ -125,25 +130,18 @@ export class SelectScreen {
         this.focusBall(btn.dataset.id);
       });
     });
-
-// 크레딧 버튼
-document.getElementById('notice-credit-btn')
-  .addEventListener('click', () => {
-    document.getElementById('credit-modal').classList.remove('hidden');
+document.querySelectorAll('.notice-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.notice-tab')
+      .forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.notice-panel')
+      .forEach(p => p.classList.add('hidden'));
+    tab.classList.add('active');
+    document.querySelector(`.notice-panel[data-panel="${tab.dataset.tab}"]`)
+      .classList.remove('hidden');
   });
+});
 
-document.getElementById('credit-close-btn')
-  .addEventListener('click', () => {
-    document.getElementById('credit-modal').classList.add('hidden');
-  });
-
-// 모달 바깥 클릭 시 닫기
-document.getElementById('credit-modal')
-  .addEventListener('click', (e) => {
-    if (e.target.id === 'credit-modal') {
-      document.getElementById('credit-modal').classList.add('hidden');
-    }
-  });
 
     
     document.getElementById('select-all-btn')
@@ -304,10 +302,10 @@ document.getElementById('credit-modal')
 
     if (this.selected.has(id)) {
       btn.classList.add('enrolled');
-      text.textContent = '✓ 출전 취소';
+      text.textContent = '✓ 취소';
     } else {
       btn.classList.remove('enrolled');
-      text.textContent = '⚔️ 출전 등록';
+      text.textContent = '⚔️ 출전';
     }
   }
 
@@ -350,7 +348,7 @@ document.getElementById('credit-modal')
     document.getElementById('select-counter').textContent = n;
     if (n >= 2) {
       btn.disabled    = false;
-      txt.textContent = `⚔️  ${n}개 싸지까기!`;
+      txt.textContent = `⚔️  ${n}개 야차 시작!`;
     } else {
       btn.disabled    = true;
       txt.textContent = n === 1 ? '1개 더 선택하세요' : '최소 2개를 선택하세요';
