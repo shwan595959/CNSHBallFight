@@ -127,6 +127,26 @@ export class SelectScreen {
       });
     });
 
+// 크레딧 버튼
+document.getElementById('notice-credit-btn')
+  .addEventListener('click', () => {
+    document.getElementById('credit-modal').classList.remove('hidden');
+  });
+
+document.getElementById('credit-close-btn')
+  .addEventListener('click', () => {
+    document.getElementById('credit-modal').classList.add('hidden');
+  });
+
+// 모달 바깥 클릭 시 닫기
+document.getElementById('credit-modal')
+  .addEventListener('click', (e) => {
+    if (e.target.id === 'credit-modal') {
+      document.getElementById('credit-modal').classList.add('hidden');
+    }
+  });
+
+    
     document.getElementById('select-all-btn')
       .addEventListener('click', () => this.selectAll());
     document.getElementById('clear-btn')
