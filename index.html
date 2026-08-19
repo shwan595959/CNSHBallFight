@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>UGBALL FIGHT</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 공 선택 화면 -->
+  <div id="select-screen">
+    <!-- SelectScreen.js가 렌더링 -->
+  </div>
+
+  <!-- 게임 화면 -->
+  <div id="game-screen" class="hidden">
+
+    <!-- 일시정지 오버레이 -->
+    <div id="pause-overlay" class="hidden">
+      <div id="pause-overlay-title">PAUSED</div>
+      <div id="pause-overlay-sub">▶ 재개 버튼을 눌러 계속하세요</div>
+    </div>
+
+    <!-- 종료 확인 모달 -->
+    <div id="confirm-modal" class="hidden">
+      <div id="confirm-box">
+        <div id="confirm-icon">⚠️</div>
+        <div id="confirm-title">게임을 종료할까요?</div>
+        <div id="confirm-desc">
+          현재 진행 중인 전투가 종료되고<br>
+          선택 화면으로 돌아갑니다.
+        </div>
+        <div id="confirm-btns">
+          <button id="confirm-yes">⏹ 종료</button>
+          <button id="confirm-no">✕ 취소</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 우측 상단 컨트롤 버튼 -->
+    <div id="game-controls">
+      <button id="pause-btn">⏸ 일시정지</button>
+      <button id="stop-btn">⏹ 종료</button>
+    </div>
+
+    <div id="header">
+      <div id="game-status">개인전</div>
+    </div>
+
+    <div id="main">
+      <div id="canvas-wrapper">
+        <canvas id="canvas"></canvas>
+
+        <!-- 결과 오버레이 -->
+        <div id="overlay" class="hidden">
+          <div id="result-box">
+            <h1 id="result-title"></h1>
+            <p  id="result-sub"></p>
+            <button id="restart-btn">복귀</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="sidebar">
+        <div id="scoreboard-wrap">
+          <h3>누가 탈락했나요?</h3>
+          <div id="scoreboard"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script type="module" src="game.js"></script>
+</body>
+</html>
