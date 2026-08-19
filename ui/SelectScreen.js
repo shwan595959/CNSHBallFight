@@ -18,6 +18,40 @@ export class SelectScreen {
       <div id="select-bg"></div>
       <div id="select-wrap">
 
+        <!-- 공지사항 배너 -->
+        <div id="notice-banner">
+          <div id="notice-left">
+            <div id="notice-badge">📢 공지</div>
+            <div id="notice-texts">
+              <div id="notice-title">대제목</div>
+              <div id="notice-subtitle">소제목</div>
+              <div id="notice-content">내용</div>
+            </div>
+          </div>
+          <button id="notice-credit-btn">🎬 크레딧</button>
+        </div>
+
+        <!-- 크레딧 모달 -->
+        <div id="credit-modal" class="hidden">
+          <div id="credit-box">
+            <div id="credit-title">🎬 크레딧</div>
+            <div class="credit-section">
+              <div class="credit-section-label">👑 제작자</div>
+              <div class="credit-names">이름</div>
+            </div>
+            <div class="credit-section">
+              <div class="credit-section-label">🙏 고마운 분들</div>
+              <div class="credit-names">
+                이름1<br>
+                이름2<br>
+                이름3
+              </div>
+            </div>
+            <button id="credit-close-btn">✕ 닫기</button>
+          </div>
+        </div>
+
+
         <!-- 헤더 -->
         <div id="select-header">
           <div id="select-title-wrap">
