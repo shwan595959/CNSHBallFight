@@ -85,12 +85,12 @@ export class ParkMinjunBall extends Ball {
     // 콤보
     this.combo          = 0;
     this.maxCombo       = 10;
-    this.comboInterval  = 3000;   // 3초마다 콤보 +1
+    this.comboInterval  = 2000;   // 3초마다 콤보 +1
     this.lastComboTime  = 0;
 
     // 기본 수치
-    this.baseSpeed      = 4.0;
-    this.baseDamage     = 12;
+    this.baseSpeed      = 3.0;
+    this.baseDamage     = 8;
 
     // 잔상
     this.afterImages        = [];
