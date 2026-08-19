@@ -31,11 +31,29 @@ function fitGameScreen() {
 
 window.addEventListener('resize', fitGameScreen);
 
-const SPAWN_POSITIONS = [
+const BATTLEFIELD_SIZES = {
+  small:  { w: 700,  h: 500  },
+  medium: { w: 1000, h: 700  },
+  large:  { w: 1400, h: 900  },
+  xlarge: { w: 2100, h: 1400 },
+};
+
+// 기준 크기 (medium) 대비 비율로 스폰 위치 계산
+const BASE_W = 1000;
+const BASE_H = 700;
+
+const BASE_SPAWN_POSITIONS = [
   [120, 100], [450,  60], [780, 100],
   [ 60, 275], [840, 275],
   [120, 450], [450, 490], [780, 450],
 ];
+
+function getSpawnPositions(w, h) {
+  return BASE_SPAWN_POSITIONS.map(([x, y]) => [
+    Math.round(x / BASE_W * w),
+    Math.round(y / BASE_H * h),
+  ]);
+}
 
 class Game {
   constructor() {
@@ -171,14 +189,15 @@ FIELD_W = battlefieldSize.w;
   this.rankCounter  = 0;
   this.results      = [];
   this.dmgCooldowns = {};
+const SPAWN_POSITIONS = getSpawnPositions(this.W, this.H);
 
-  selectedInfos.forEach((info, i) => {
-    const [x, y] = SPAWN_POSITIONS[i % SPAWN_POSITIONS.length];
-    const sx = Math.min(x, this.W - 60);
-    const sy = Math.min(y, this.H - 60);
-    const ball = new info.Class(sx, sy, i);
-    this.balls.push(ball);
-  });
+selectedInfos.forEach((info, i) => {
+  const [x, y] = SPAWN_POSITIONS[i % SPAWN_POSITIONS.length];
+  const sx = Math.min(x, this.W - 60);
+  const sy = Math.min(y, this.H - 60);
+  const ball = new info.Class(sx, sy, i);
+  this.balls.push(ball);
+});
 
   this.lastTime  = performance.now();
   this.gameStart = performance.now();
