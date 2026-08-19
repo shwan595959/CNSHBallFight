@@ -575,7 +575,7 @@ export class KimSooHwanBall extends Ball {
         ball.hp = Math.min(ball.maxHp, ball.hp + 20);
         effects.push(new FloatingText(
           ball.x, ball.y - ball.radius - 10,
-          '💚 HEAL! +20', '#2ecc71', 22, 5.0
+          '💚 HEAL! +50', '#2ecc71', 22, 5.0
         ));
 
       } else {
