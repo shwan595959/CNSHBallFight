@@ -825,3 +825,134 @@ body {
   color: #FFD700;
   opacity: 0.7;
 }
+
+/* ───── 공지 배너 ───── */
+#notice-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border: 1px solid #ffffff22;
+  border-radius: 12px;
+  padding: 14px 20px;
+  margin-bottom: 12px;
+  gap: 16px;
+}
+
+#notice-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+#notice-badge {
+  background: #f39c1233;
+  border: 1px solid #f39c1266;
+  color: #f39c12;
+  border-radius: 8px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: bold;
+  white-space: nowrap;
+  margin-top: 2px;
+}
+
+#notice-title {
+  font-size: 15px;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 2px;
+}
+
+#notice-subtitle {
+  font-size: 12px;
+  color: #aaaacc;
+  margin-bottom: 4px;
+}
+
+#notice-content {
+  font-size: 12px;
+  color: #888899;
+  line-height: 1.5;
+}
+
+#notice-credit-btn {
+  background: #ffffff11;
+  border: 1px solid #ffffff33;
+  color: #ffffffcc;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 13px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+#notice-credit-btn:hover {
+  background: #ffffff22;
+}
+
+/* ───── 크레딧 모달 ───── */
+#credit-modal {
+  position: fixed;
+  inset: 0;
+  background: #00000088;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+#credit-modal.hidden {
+  display: none;
+}
+
+#credit-box {
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  border: 1px solid #ffffff22;
+  border-radius: 16px;
+  padding: 32px 40px;
+  min-width: 300px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#credit-title {
+  font-size: 22px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.credit-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.credit-section-label {
+  font-size: 13px;
+  color: #aaaacc;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.credit-names {
+  font-size: 15px;
+  color: #ffffff;
+  line-height: 1.8;
+}
+
+#credit-close-btn {
+  background: #ffffff11;
+  border: 1px solid #ffffff33;
+  color: #ffffffcc;
+  border-radius: 8px;
+  padding: 8px 20px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+#credit-close-btn:hover {
+  background: #ffffff22;
+}
+
